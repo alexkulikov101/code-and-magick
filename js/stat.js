@@ -3,33 +3,13 @@
 var findMaxElement = function (arr) {
   var max = arr[0];
 
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i + 1] > max) {
-      max = arr[i + 1];
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
     }
   }
 
   return max;
-};
-
-var getRandomOpacity = function (rgba) {
-  var min = 0.3;
-  return rgba.replace('random', min + Math.random() * (1 - min));
-};
-
-var sortElement = function (arr) {
-  for (var i = 0; i < arr.length - 1; i++) {
-    var max = arr[i];
-
-    for (var j = i + 1; j < arr.length; j++) {
-      if (max < arr[j]) {
-        var oldMax = arr[i];
-        max = arr[j];
-        arr[i] = max;
-        arr[j] = oldMax;
-      }
-    }
-  }
 };
 
 window.renderStatistics = function (ctx, names, times) {
@@ -65,13 +45,11 @@ window.renderStatistics = function (ctx, names, times) {
   var initialY = 250;
   var lineHeight = 15;
 
-  sortElement(times);
-
   for (var i = 0; i < times.length; i++) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = getRandomOpacity('rgba(0, 0, 255, random)');
+      ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     }
 
     ctx.fillText(Math.floor(times[i]), initialX + indent * i, initialY - (times[i] * step + lineHeight));
