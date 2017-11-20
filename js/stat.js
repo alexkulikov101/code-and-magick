@@ -45,15 +45,16 @@ window.renderStatistics = function (ctx, names, times) {
   var initialY = 250;
   var lineHeight = 15;
 
+  var renderColumnsHistogram = function (color, x, y, width, height) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, width, height);
+  };
+
   for (var i = 0; i < times.length; i++) {
     if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+      renderColumnsHistogram('rgba(255, 0, 0, 1)', initialX + indent * i, initialY, barWidth, -(times[i] * step));
     } else {
-      ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+      renderColumnsHistogram('rgba(0, 0, 255, ' + Math.random() + ')', initialX + indent * i, initialY, barWidth, -(times[i] * step));
     }
-
-    ctx.fillText(Math.floor(times[i]), initialX + indent * i, initialY - (times[i] * step + lineHeight));
-    ctx.fillRect(initialX + indent * i, initialY, barWidth, -(times[i] * step));
-    ctx.fillText(names[i], initialX + indent * i, initialY + lineHeight);
   }
 };
