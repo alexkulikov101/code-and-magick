@@ -49,6 +49,12 @@ window.renderStatistics = function (ctx, names, times) {
   var initialY = 250;
   var lineHeight = 15;
 
+  var renderColoredText = function (color, font, text, x, y) {
+    ctx.fillStyle = color;
+    ctx.font = font;
+    ctx.fillText(text, x, y);
+  };
+
   var renderColumnsHistogram = function (color, x, y, width, height) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
@@ -60,5 +66,8 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       renderColumnsHistogram(getRandomColor(), initialX + indent * i, initialY, barWidth, -(times[i] * step));
     }
+
+    renderColoredText('skyblue', '16px PT Mono', Math.floor(times[i]), initialX + indent * i, initialY - (times[i] * step + lineHeight));
+    renderColoredText('peru', '16px PT Mono', names[i], initialX + indent * i, initialY + lineHeight);
   }
 };
