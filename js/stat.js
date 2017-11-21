@@ -12,6 +12,10 @@ var findMaxElement = function (arr) {
   return max;
 };
 
+var getRandomColor = function () {
+  return 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.random() + ')';
+};
+
 window.renderStatistics = function (ctx, names, times) {
   ctx.beginPath();
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
@@ -54,7 +58,7 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       renderColumnsHistogram('rgba(255, 0, 0, 1)', initialX + indent * i, initialY, barWidth, -(times[i] * step));
     } else {
-      renderColumnsHistogram('rgba(0, 0, 255, ' + Math.random() + ')', initialX + indent * i, initialY, barWidth, -(times[i] * step));
+      renderColumnsHistogram(getRandomColor(), initialX + indent * i, initialY, barWidth, -(times[i] * step));
     }
   }
 };
