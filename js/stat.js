@@ -61,11 +61,7 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   for (var i = 0; i < times.length; i++) {
-    if (names[i] === 'Вы') {
-      var colorHistogram = 'rgba(255, 0, 0, 1)';
-    } else {
-      colorHistogram = getRandomOpacity(0, 0, 255);
-    }
+    var colorHistogram = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getRandomOpacity(0, 0, 255);
 
     renderColumnsHistogram(colorHistogram, initialX + indent * i, initialY, barWidth, -(times[i] * step));
     renderColoredText('skyblue', '16px PT Mono', Math.floor(times[i]), initialX + indent * i, initialY - (times[i] * step + lineHeight));
