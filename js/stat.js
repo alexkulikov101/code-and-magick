@@ -12,8 +12,8 @@ var findMaxElement = function (arr) {
   return max;
 };
 
-var getRandomColor = function () {
-  return 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.random() + ')';
+var getRandomOpacity = function (red, green, blue) {
+  return 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + Math.random() + ')';
 };
 
 window.renderStatistics = function (ctx, names, times) {
@@ -62,11 +62,12 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < times.length; i++) {
     if (names[i] === 'Вы') {
-      renderColumnsHistogram('rgba(255, 0, 0, 1)', initialX + indent * i, initialY, barWidth, -(times[i] * step));
+      var colorHistogram = 'rgba(255, 0, 0, 1)';
     } else {
-      renderColumnsHistogram(getRandomColor(), initialX + indent * i, initialY, barWidth, -(times[i] * step));
+      colorHistogram = getRandomOpacity(0, 0, 255);
     }
 
+    renderColumnsHistogram(colorHistogram, initialX + indent * i, initialY, barWidth, -(times[i] * step));
     renderColoredText('skyblue', '16px PT Mono', Math.floor(times[i]), initialX + indent * i, initialY - (times[i] * step + lineHeight));
     renderColoredText('peru', '16px PT Mono', names[i], initialX + indent * i, initialY + lineHeight);
   }
