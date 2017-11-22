@@ -8,12 +8,16 @@ var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
+var getRandomElement = function(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
 var getRandomName = function (name, surname) {
-  return name[Math.floor(Math.random() * name.length)] + ' ' + surname[Math.floor(Math.random() * surname.length)];
+  return getRandomElement(name) + ' ' + getRandomElement(surname);
 };
 
 var getRandomColor = function (color) {
-  return color[Math.floor(Math.random() * color.length)];
+  return getRandomElement(color);
 };
 
 var wizards = [
