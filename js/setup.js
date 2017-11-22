@@ -16,30 +16,26 @@ var getRandomName = function (name, surname) {
   return getRandomElement(name) + ' ' + getRandomElement(surname);
 };
 
-var getRandomColor = function (color) {
-  return getRandomElement(color);
-};
-
 var wizards = [
   {
     name: getRandomName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: getRandomColor(WIZARD_COAT_COLORS),
-    eyesColor: getRandomColor(WIZARD_EYES_COLORS)
+    coatColor: getRandomElement(WIZARD_COAT_COLORS),
+    eyesColor: getRandomElement(WIZARD_EYES_COLORS)
   },
   {
     name: getRandomName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: getRandomColor(WIZARD_COAT_COLORS),
-    eyesColor: getRandomColor(WIZARD_EYES_COLORS)
+    coatColor: getRandomElement(WIZARD_COAT_COLORS),
+    eyesColor: getRandomElement(WIZARD_EYES_COLORS)
   },
   {
     name: getRandomName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: getRandomColor(WIZARD_COAT_COLORS),
-    eyesColor: getRandomColor(WIZARD_EYES_COLORS)
+    coatColor: getRandomElement(WIZARD_COAT_COLORS),
+    eyesColor: getRandomElement(WIZARD_EYES_COLORS)
   },
   {
     name: getRandomName(WIZARD_NAMES, WIZARD_SURNAMES),
-    coatColor: getRandomColor(WIZARD_COAT_COLORS),
-    eyesColor: getRandomColor(WIZARD_EYES_COLORS)
+    coatColor: getRandomElement(WIZARD_COAT_COLORS),
+    eyesColor: getRandomElement(WIZARD_EYES_COLORS)
   }
 ];
 
