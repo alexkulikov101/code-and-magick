@@ -127,3 +127,6 @@ eyesMainWizard.addEventListener('click', function () {
 fireballWizard.addEventListener('click', function () {
   fireballWizard.style.background = getRandomElement(WIZARD_FIREBALL_COLORS);
 });
+
+var userDialogForm = userDialog.querySelector('.setup-wizard-form');
+userDialogForm.setAttribute('action', 'https://js.dump.academy/code-and-magick');
