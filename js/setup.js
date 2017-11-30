@@ -109,3 +109,10 @@ userDialogClose.addEventListener('keydown', function (evt) {
 
 var userName = userDialog.querySelector('.setup-user-name');
 userName.setAttribute('minlength', 2);
+
+var mainWizard = userDialog.querySelector('.setup-wizard');
+var coatMainWizard = mainWizard.querySelector('.wizard-coat');
+
+coatMainWizard.addEventListener('click', function () {
+  coatMainWizard.style.fill = getRandomElement(WIZARD_COAT_COLORS);
+});
