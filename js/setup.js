@@ -106,3 +106,6 @@ userDialogClose.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
+
+var userName = userDialog.querySelector('.setup-user-name');
+userName.setAttribute('minlength', 2);
