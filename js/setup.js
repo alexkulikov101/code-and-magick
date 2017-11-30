@@ -71,3 +71,11 @@ var openPopup = function() {
 var closePopup = function() {
   userDialog.classList.add('hidden');
 };
+
+userDialogOpen.addEventListener('click', function() {
+  openPopup();
+});
+
+userDialogClose.addEventListener('click', function() {
+  closePopup();
+});
