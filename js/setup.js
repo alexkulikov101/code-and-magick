@@ -112,7 +112,12 @@ userName.setAttribute('minlength', 2);
 
 var mainWizard = userDialog.querySelector('.setup-wizard');
 var coatMainWizard = mainWizard.querySelector('.wizard-coat');
+var eyesMainWizard = mainWizard.querySelector('.wizard-eyes');
 
 coatMainWizard.addEventListener('click', function () {
   coatMainWizard.style.fill = getRandomElement(WIZARD_COAT_COLORS);
+});
+
+eyesMainWizard.addEventListener('click', function () {
+  eyesMainWizard.style.fill = getRandomElement(WIZARD_EYES_COLORS);
 });
