@@ -4,11 +4,13 @@ var WIZARD_NAMES = ['Иван', 'Хуан', 'Себастьян', 'Мария', 
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
 
-var getRandomElement = function(arr) {
+var getRandomElement = function (arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
@@ -61,3 +63,70 @@ for (var i = 0; i < wizards.length; i++) {
 similarListElement.appendChild(fragment);
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+var userDialogOpen = document.querySelector('.setup-open');
+var userDialogClose = userDialog.querySelector('.setup-close');
+userDialogClose.setAttribute('tabindex', 0);
+var userDialogIcon = userDialogOpen.querySelector('.setup-open-icon');
+userDialogIcon.setAttribute('tabindex', 0);
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    if (evt.target.className !== 'setup-user-name') {
+      closePopup();
+    }
+  }
+};
+
+var openPopup = function () {
+  userDialog.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  userDialog.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+userDialogOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+userDialogOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+userDialogClose.addEventListener('click', function () {
+  closePopup();
+});
+
+userDialogClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+var userName = userDialog.querySelector('.setup-user-name');
+userName.setAttribute('minlength', 2);
+
+var mainWizard = userDialog.querySelector('.setup-wizard');
+var coatMainWizard = mainWizard.querySelector('.wizard-coat');
+var eyesMainWizard = mainWizard.querySelector('.wizard-eyes');
+var fireballWizard = userDialog.querySelector('.setup-fireball-wrap');
+
+coatMainWizard.addEventListener('click', function () {
+  coatMainWizard.style.fill = getRandomElement(WIZARD_COAT_COLORS);
+});
+
+eyesMainWizard.addEventListener('click', function () {
+  eyesMainWizard.style.fill = getRandomElement(WIZARD_EYES_COLORS);
+});
+
+fireballWizard.addEventListener('click', function () {
+  fireballWizard.style.background = getRandomElement(WIZARD_FIREBALL_COLORS);
+});
+
+var userDialogForm = userDialog.querySelector('.setup-wizard-form');
+userDialogForm.setAttribute('action', 'https://js.dump.academy/code-and-magick');
