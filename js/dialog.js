@@ -102,4 +102,54 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  var shopElement = document.querySelector('.setup-artifacts-shop');
+  var artifactsElement = document.querySelector('.setup-artifacts');
+  var draggedItem = null;
+
+  shopElement.addEventListener('dragstart', function (evt) {
+    if (evt.target.tagName.toLowerCase() === 'img') {
+      draggedItem = evt.target.cloneNode();
+      evt.dataTransfer.setData('text/plain', evt.target.alt);
+      artifactsElement.style.outline = '2px dashed red';
+    }
+  });
+
+  artifactsElement.addEventListener('dragstart', function (evt) {
+    if (evt.target.tagName.toLowerCase() === 'img') {
+      draggedItem = evt.target;
+      evt.dataTransfer.setData('text/plain', evt.target.alt);
+      artifactsElement.style.outline = '2px dashed red';
+    }
+  });
+
+  artifactsElement.addEventListener('dragover', function (evt) {
+    evt.preventDefault();
+    return false;
+  });
+
+  artifactsElement.addEventListener('drop', function (evt) {
+    if (evt.target.className === 'setup-artifacts-cell' && !evt.target.firstChild) {
+      evt.target.style.backgroundColor = '';
+      evt.target.appendChild(draggedItem);
+      artifactsElement.removeAttribute('style');
+      evt.preventDefault();
+    }
+  });
+
+
+  artifactsElement.addEventListener('dragenter', function (evt) {
+    if (evt.target.className === 'setup-artifacts-cell' && !evt.target.firstChild) {
+      evt.target.style.backgroundColor = 'yellow';
+      evt.preventDefault();
+
+    }
+  });
+
+  artifactsElement.addEventListener('dragleave', function (evt) {
+    if (evt.target.className === 'setup-artifacts-cell' && !evt.target.firstChild) {
+      evt.target.style.backgroundColor = '';
+      evt.preventDefault();
+    }
+  });
 })();
