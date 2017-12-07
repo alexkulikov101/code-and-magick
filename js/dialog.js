@@ -75,7 +75,7 @@
       y: evt.clientY
     };
 
-    var onMouseMove = function (moveEvt) {
+    var mouseMoveHandler = function (moveEvt) {
       moveEvt.preventDefault();
 
       var shift = {
@@ -92,15 +92,15 @@
       userDialog.style.left = (userDialog.offsetLeft - shift.x) + 'px';
     };
 
-    var onMouseUp = function (upEvt) {
+    var mouseUpHandler = function (upEvt) {
       upEvt.preventDefault();
 
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
   });
 
   var shopElement = document.querySelector('.setup-artifacts-shop');
@@ -119,12 +119,12 @@
     if (evt.target.tagName.toLowerCase() === 'img') {
       draggedItem = evt.target;
       evt.dataTransfer.setData('text/plain', evt.target.alt);
-      artifactsElement.style.outline = '2px dashed red';
     }
   });
 
   artifactsElement.addEventListener('dragover', function (evt) {
     evt.preventDefault();
+    artifactsElement.style.outline = '';
     return false;
   });
 
@@ -149,6 +149,7 @@
   artifactsElement.addEventListener('dragleave', function (evt) {
     if (evt.target.className === 'setup-artifacts-cell' && !evt.target.firstChild) {
       evt.target.style.backgroundColor = '';
+      artifactsElement.style.outline = '2px dashed red';
       evt.preventDefault();
     }
   });
