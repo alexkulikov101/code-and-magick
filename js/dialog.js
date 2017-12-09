@@ -115,16 +115,24 @@
     }
   });
 
+  shopElement.addEventListener('dragend', function () {
+    artifactsElement.removeAttribute('style');
+  });
+
   artifactsElement.addEventListener('dragstart', function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
       draggedItem = evt.target;
       evt.dataTransfer.setData('text/plain', evt.target.alt);
+      artifactsElement.style.outline = '2px dashed red';
     }
+  });
+
+  artifactsElement.addEventListener('dragend', function () {
+    artifactsElement.removeAttribute('style');
   });
 
   artifactsElement.addEventListener('dragover', function (evt) {
     evt.preventDefault();
-    artifactsElement.style.outline = '';
     return false;
   });
 
@@ -132,11 +140,9 @@
     if (evt.target.className === 'setup-artifacts-cell' && !evt.target.firstChild) {
       evt.target.style.backgroundColor = '';
       evt.target.appendChild(draggedItem);
-      artifactsElement.removeAttribute('style');
       evt.preventDefault();
     }
   });
-
 
   artifactsElement.addEventListener('dragenter', function (evt) {
     if (evt.target.className === 'setup-artifacts-cell' && !evt.target.firstChild) {
@@ -149,7 +155,6 @@
   artifactsElement.addEventListener('dragleave', function (evt) {
     if (evt.target.className === 'setup-artifacts-cell' && !evt.target.firstChild) {
       evt.target.style.backgroundColor = '';
-      artifactsElement.style.outline = '2px dashed red';
       evt.preventDefault();
     }
   });
