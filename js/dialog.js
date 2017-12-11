@@ -44,23 +44,6 @@
   var userName = userDialog.querySelector('.setup-user-name');
   userName.setAttribute('minlength', 2);
 
-  var mainWizard = userDialog.querySelector('.setup-wizard');
-  var coatMainWizard = mainWizard.querySelector('.wizard-coat');
-  var eyesMainWizard = mainWizard.querySelector('.wizard-eyes');
-  var fireballWizard = userDialog.querySelector('.setup-fireball-wrap');
-
-  coatMainWizard.addEventListener('click', function () {
-    coatMainWizard.style.fill = window.colorize.getCoatColor();
-  });
-
-  eyesMainWizard.addEventListener('click', function () {
-    eyesMainWizard.style.fill = window.colorize.getEyesColor();
-  });
-
-  fireballWizard.addEventListener('click', function () {
-    fireballWizard.style.background = window.colorize.getFireballColor();
-  });
-
   var userDialogForm = userDialog.querySelector('.setup-wizard-form');
   userDialogForm.setAttribute('action', 'https://js.dump.academy/code-and-magick');
 
