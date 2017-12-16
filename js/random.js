@@ -6,8 +6,8 @@
       return arr[Math.floor(Math.random() * arr.length)];
     },
 
-    getRandomName: function (name, surname) {
-      return window.random.getRandomElement(name) + ' ' + window.random.getRandomElement(surname);
+    randomSplice: function (arr) {
+      return arr.splice(Math.floor(Math.random() * arr.length), 1);
     }
   };
 })();
